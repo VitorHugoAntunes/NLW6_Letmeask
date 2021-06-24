@@ -42,7 +42,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     return () => {
       unsubscribe();
     }
-  })
+  }, [])
 
   async function signInWithGoogle(){
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -68,5 +68,5 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         <AuthContext.Provider value={{ user, signInWithGoogle }}>
             {props.children}
         </AuthContext.Provider>
-    )
+    );
 }
