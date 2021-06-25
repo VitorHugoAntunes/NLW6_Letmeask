@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://github.com/VitorHugoAntunes/readmeteste/blob/main/logo.svg" alt="Letmeask logo" />
+  <img src="https://github.com/VitorHugoAntunes/NLW6_Letmeask/blob/main/src/assets/images/logo.svg" alt="Letmeask logo" />
 </h1>
 
 <p align="center">
