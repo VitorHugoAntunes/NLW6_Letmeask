@@ -8,6 +8,33 @@
         margin-top: 8px;
     }
 
+    &.answered {
+        background: #DBDCDD;
+    }
+
+    &.highlighted {
+        background: #835afd;
+        border: 1px solid #f4f0ff;
+        
+        p {
+            color: #f4f0ff;
+        }
+
+        .user-info span {
+            color: #f4f0ff;
+            font-weight: 500;
+        }
+
+        footer button svg path, footer button svg circle {
+            stroke: #f4f0ff;
+        }
+
+        .like-button span, .liked svg path {
+            stroke: #f4f0ff !important;
+            color: #f4f0ff;
+        }
+    }
+
     p {
         color: #29292e;
     }
@@ -33,6 +60,11 @@
                 color: #737380;
                 font-size: 14px;
             }
+        }
+
+        > div {
+            display: flex;
+            gap: 16px;
         }
 
         button {
