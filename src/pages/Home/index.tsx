@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
+import githubIcon from '../../assets/images/github-icon.svg';
 
 import { Button } from '../../components/Button';
 
@@ -13,12 +14,19 @@ import { database } from '../../services/firebase';
 
 export function Home(){
     const history = useHistory();
-    const { user, signInWithGoogle } = useAuth();
+    const { user, signInWithGoogle, signInWithGitHub } = useAuth();
     const [roomCode, setRoomCode] = useState('');
 
-    async function handleCreateRoom(){
+    async function handleCreateRoomWithGoogle(){
         if(!user) {
             await signInWithGoogle();
+        }
+
+        history.push('/rooms/new')
+    }
+    async function handleCreateRoomWithGitHub(){
+        if(!user) {
+            await signInWithGitHub();
         }
 
         history.push('/rooms/new')
@@ -55,9 +63,13 @@ export function Home(){
             <main>
                 <div className="main-content">
                     <img src={logoImg} alt="Letmeask" />
-                    <button onClick={handleCreateRoom} className="create-room">
+                    <button onClick={handleCreateRoomWithGoogle} className="create-room google">
                         <img src={googleIconImg} alt="Logo da Google" />
                         Crie uma sala com o Google
+                    </button>
+                    <button onClick={handleCreateRoomWithGitHub} className="create-room github">
+                        <img src={githubIcon} alt="Logo do GitHub" />
+                        Crie uma sala com o GitHub
                     </button>
                     <div className="separator">ou entre em uma sala</div>
                     <form onSubmit={handleJoinRoom}>

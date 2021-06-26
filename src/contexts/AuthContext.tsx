@@ -10,6 +10,8 @@ type User = {
 type AuthContextType = {
 user: User | undefined;
 signInWithGoogle: () => Promise<void>;
+signInWithGitHub: () => Promise<void>;
+signoutAccount: () => void;
 }
 
 type AuthContextProviderProps = {
@@ -45,9 +47,9 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   }, [])
 
   async function signInWithGoogle(){
-    const provider = new firebase.auth.GoogleAuthProvider();
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-    const result = await auth.signInWithPopup(provider);
+    const result = await auth.signInWithPopup(googleProvider);
 
     if(result.user){
       const { displayName, photoURL, uid } = result.user
@@ -64,8 +66,32 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     }
   }
 
+  async function signInWithGitHub(){
+    const githubProvider = new firebase.auth.GithubAuthProvider();
+    const result = await auth.signInWithPopup(githubProvider);
+
+    if(result.user){
+      const { displayName, photoURL, uid } = result.user
+
+      if(!displayName || !photoURL){
+        throw new Error('Missing information from Google Account.')
+      }
+
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL
+      })
+    }
+
+    console.log(result, result.user)
+  }
+
+  function signoutAccount() {
+    firebase.auth().signOut();
+  }
     return(
-        <AuthContext.Provider value={{ user, signInWithGoogle }}>
+        <AuthContext.Provider value={{ user, signInWithGoogle, signInWithGitHub, signoutAccount }}>
             {props.children}
         </AuthContext.Provider>
     );
