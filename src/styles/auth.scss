@@ -90,11 +90,9 @@
     }
 
     .create-room {
-        margin-top: 64px;
         height: 50px;
         border-radius: 8px;
         font-weight: 500;
-        background: #ea4335;
         color: #FFF;
 
         display: flex;
@@ -113,6 +111,20 @@
         &:hover {
             filter: brightness(0.9);
         } 
+    }
+
+    .create-room.google {
+        margin-top: 64px;
+        background: #ea4335;
+    }
+
+    .create-room.github {
+        margin-top: 20px;
+        background: #333;
+        
+        img {
+            height: 24px;
+        }
     }
 
     .separator {

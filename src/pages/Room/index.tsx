@@ -8,6 +8,8 @@ import { Question } from '../../components/Question';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
+import {ModalComponent} from '../../components/Modal';
+
 import '../../styles/room.scss';
 import { useRoom } from '../../hooks/useRoom';
 
@@ -16,9 +18,10 @@ type RoomParams = {
 }
 
 export function Room(){
-    const { user } = useAuth();
+    const { user, signoutAccount } = useAuth();
     const params = useParams<RoomParams>();
     const [newQuestion, setNewQuestion] = useState('');
+    const [openModal, setOpenModal] = useState(false);
 
     const roomId = params.id;
 
@@ -49,7 +52,7 @@ export function Room(){
 
         setNewQuestion('');
     }
-
+    
     async function handleLikeQuestion(questionId: string, likeId: string | undefined) {
         if(likeId){
             await database.ref(`rooms/${roomId}/questions/${questionId}/likes/${likeId}`).remove()
@@ -60,12 +63,27 @@ export function Room(){
         }
     }
 
+    async function handleSignOutAccount(){
+        if(window.confirm('Tem certeza que você deseja sair da sua conta?')){
+            if(user) {
+                signoutAccount();
+            }
+            window.location.reload();
+        }
+    }
+
     return(
         <div id="page-room">
+            {openModal && <ModalComponent closeModal={() => setOpenModal(false)}/>}
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Letmeask" />
-                    <RoomCode code={params.id}/>
+                    <div>
+                        <RoomCode code={params.id}/>
+                        { user && (
+                            <Button type="submit" disabled={!user} onClick={handleSignOutAccount}>Sair da conta</Button>
+                        )}
+                    </div>
                 </div>
             </header>
  
@@ -88,8 +106,9 @@ export function Room(){
                                 <img src={user.avatar} alt={user.name} />
                                 <span>{user.name}</span>
                             </div>
+                            
                         ) : (
-                            <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
+                            <span>Para enviar uma pergunta, <button onClick={() => setOpenModal(true)}>faça seu login</button>.</span>
                         ) }
                         <Button type="submit" disabled={!user}>Enviar pergunta</Button>
                     </div>
