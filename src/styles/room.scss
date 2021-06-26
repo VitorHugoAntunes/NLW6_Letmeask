@@ -25,10 +25,26 @@
         }        
     }
 
+    .cancel-confirm-buttons {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    
+        button:first-child {
+            background: #DBDCDD;
+            color: #737380;
+        }
+    
+        button:last-child {
+            background: #E73F5D;
+            color: #fff;
+        }
+    }
+
     main {
         max-width: 800px;
         margin: 0 auto;
-
         .room-title {
             margin: 32px 0 24px;
             display: flex;

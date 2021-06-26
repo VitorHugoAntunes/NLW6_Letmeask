@@ -9,6 +9,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
 import {ModalComponent} from '../../components/Modal';
+import {LoginButtons} from '../../components/LoginButtons';
 
 import '../../styles/room.scss';
 import { useRoom } from '../../hooks/useRoom';
@@ -74,7 +75,15 @@ export function Room(){
 
     return(
         <div id="page-room">
-            {openModal && <ModalComponent closeModal={() => setOpenModal(false)}/>}
+            {openModal && 
+                <ModalComponent 
+                    closeModal={() => setOpenModal(false)} 
+                    title={
+                            <p>Escolha um método de login abaixo:</p>
+                          }
+                >
+                    <LoginButtons closeModal={() => setOpenModal(false)}/>
+                </ModalComponent>}
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Letmeask" />

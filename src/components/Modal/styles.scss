@@ -39,48 +39,15 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        .modal-description {
+            margin-top: 40px;
+        }
+
         .modal-body {
             margin-top: 50px;
             display: flex;
             flex-direction: column;
             gap: 40px;
-
-            .login-button {
-                width: 250px;
-                height: 50px;
-                border-radius: 8px;
-                font-weight: 500;
-                color: #FFF;
-        
-                display: flex;
-                justify-content: center;
-                align-items: center;
-        
-                cursor: pointer;
-                border: 0;
-        
-                transition: filter 0.2s;
-        
-                img {
-                    margin-right: 8px;
-                }
-        
-                &:hover {
-                    filter: brightness(0.9);
-                } 
-            }
-        
-            .login-button.google {
-                background: #ea4335;
-            }
-        
-            .login-button.github {
-                background: #333;
-                
-                img {
-                    height: 24px;
-                }
-            }
         }
     }
 }

@@ -4,16 +4,16 @@ import logoImg from '../../assets/images/logo.svg';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
-// import { ModalComponent } from '../../components/Modal';
+import { ModalComponent } from '../../components/Modal';
 import { useAuth } from '../../hooks/useAuth';
 
 import '../../styles/room.scss';
 
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
-// import { useState } from 'react';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 
 type RoomParams = {
     id: string;
@@ -27,15 +27,13 @@ export function AdminRoom(){
     const roomId = params.id;
 
     const { title, questions } = useRoom(roomId);
-    // const [openModal, setOpenModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     async function handleEndRoom(){
-        if(window.confirm('Tem certeza que você deseja encerrar a sala?')){
-            await database.ref(`rooms/${roomId}`).update({
-                endedAt: new Date(),
-            })
-            history.push('/');
-        }
+        await database.ref(`rooms/${roomId}`).update({
+            endedAt: new Date(),
+        })
+        history.push('/');
     }
     const notifyDeletedQuestion = () => toast.success('Pergunta apagada com sucesso.', {
         duration: 1000,
@@ -45,8 +43,8 @@ export function AdminRoom(){
     async function handleDeleteQuestion(questionId: string){
         if(window.confirm('Tem certeza que você deseja excluir a pergunta?')){
             await database.ref(`rooms/${roomId}/questions/${questionId}`).remove()
+            notifyDeletedQuestion();
         }
-        notifyDeletedQuestion();
     }
 
     async function handleCheckQuestionAsAnswered(questionId: string){
@@ -73,13 +71,27 @@ export function AdminRoom(){
 
     return(
         <div id="page-room">
-            {/* {openModal && <ModalComponent closeModal={() => setOpenModal(false)}/>} */}
+            {openModal &&
+                <ModalComponent
+                    closeModal={() => setOpenModal(false)}
+                    title={
+                        <p>Deseja encerrar a sala?</p>
+                    }
+                    description={
+                        <p>Ao encerrar a sala, não será possível entrar para ver as perguntas novamente.</p>
+                    }
+                >
+                    <div className="cancel-confirm-buttons">
+                        <Button onClick={() => setOpenModal(false)}>Cancelar</Button>
+                        <Button onClick={handleEndRoom}>Sim, encerrar</Button>
+                    </div>
+                </ModalComponent>}
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Letmeask" />
                     <div>
                         <RoomCode code={params.id} />
-                        <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
+                        <Button isOutlined onClick={() => setOpenModal(true)}>Encerrar sala</Button>
                     </div>
                 </div>
             </header>
