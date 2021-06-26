@@ -83,8 +83,6 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         avatar: photoURL
       })
     }
-
-    console.log(result, result.user)
   }
 
   function signoutAccount() {
