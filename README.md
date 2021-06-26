@@ -1,10 +1,11 @@
 <h1 align="center">
-  <img src="https://github.com/VitorHugoAntunes/NLW6_Letmeask/blob/main/src/assets/images/logo.svg" alt="Letmeask logo" />
+  <img src="https://github.com/VitorHugoAntunes/readmeteste/blob/main/logo.svg" alt="Letmeask logo" />
 </h1>
 
 <p align="center">
   <a href="#installation">Installation</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#license">License</a>
 </p>
@@ -78,6 +79,33 @@ This project was developed with these technologies:
 - Firebase Authentication
 - Firebase Realtime Database
 - Typescript
+
+<h2 id="features">Features</h2>
+
+<h3>Authentication with GitHub</h3>
+<h1 align="center">
+  <img src="https://github.com/VitorHugoAntunes/NLW6_Letmeask/blob/main/src/assets/images/github-auth.JPG" alt="GitHub Auth" width="720px"/>
+</h1>
+
+<p>It is now possible to authenticate to the application using also a GitHub account to create rooms.</p>
+
+<h3>Toasts and Modals</h3>
+
+<h1 align="center">
+  <img src="https://github.com/VitorHugoAntunes/NLW6_Letmeask/blob/main/src/assets/images/modal-confirmation.JPG" alt="Modal" width="480px"/>
+  <img src="https://github.com/VitorHugoAntunes/NLW6_Letmeask/blob/main/src/assets/images/toast.JPG" alt="Toast" width="480px"/>
+</h1>
+
+<p>Modals and toasts were added to confirm your actions in the application. There is modal to choose login method and toats that confirm deleted questions and copied code.</p>
+
+<h3>SignOut Option</h3>
+
+<h1 align="center">
+  <img src="https://github.com/VitorHugoAntunes/NLW6_Letmeask/blob/main/src/assets/images/sign-out-account.JPG" alt="SignOut" width="720px"/>
+</h1>
+
+<p>After using the authentication options with your Google or GitHub account, you can log out of your account using the top button next to the room code.</p></br>
+<p>Some design changes were made, for example the styles of a highlighted question.</p>
 
 <h2 id="about">About</h2>
 <p>This project was designed to create a Q&A room that updates data in real time. The owner of the room can answer, mark as a highlight, like and delete the questions.</p>
