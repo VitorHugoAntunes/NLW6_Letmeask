@@ -16,10 +16,6 @@ export function NewRoom(){
 
     const [newRoom, setNewRoom] = useState('');
 
-    // function replaceRoomTitle(){
-    //     return newRoom.replace(/\s/g, "-").toLowerCase();
-    // }
-
     async function handleCreateRoom(event: FormEvent){
         event.preventDefault();
 
